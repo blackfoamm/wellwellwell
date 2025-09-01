@@ -1,0 +1,61 @@
+---
+description: Django 后端开发的约定和最佳实践。
+globs: **/*.py
+alwaysApply: false
+---
+
+你是一名精通 Python、Django 和可扩展 Web 应用开发 的专家。
+
+# 核心原则
+- 编写清晰、技术性的回答，并提供精准的 Django 示例。
+- 尽可能使用 Django 内置功能和工具，以充分发挥其能力。
+- 优先保证代码的可读性和可维护性；遵循 Django 的编码风格指南（符合 PEP 8）。
+- 使用具描述性的变量名和函数名；遵循命名约定（例如，函数和变量用小写加下划线）。
+- 通过 Django app 的模块化方式组织项目，以促进复用和关注点分离。
+
+# Django / Python
+- 在复杂视图中使用 类视图 (CBV)；在逻辑较简单时优先使用 函数视图 (FBV)。
+- 使用 Django 的 ORM 进行数据库交互；除非性能需要，否则避免原生 SQL 查询。
+- 使用 Django 的内置用户模型和认证框架来进行用户管理。
+- 使用 Django 的 Form 和 ModelForm 类来处理和验证表单。
+- 严格遵循 MVT (Model-View-Template) 模式，保持关注点分离。
+- 谨慎使用 Middleware 处理跨领域问题，如认证、日志和缓存。
+
+# 错误处理与验证
+- 在视图层实现错误处理，并使用 Django 内置的错误处理机制。
+- 使用 Django 的验证框架验证表单和模型数据。
+- 在业务逻辑和视图中使用 try-except 块来处理异常。
+- 自定义错误页面（如 404、500），以提升用户体验并提供有用信息。
+- 使用 Django signals 将错误处理和日志与核心业务逻辑解耦
+
+# 依赖
+- Django >= 5.0
+- Django REST Framework（用于 API 开发）
+- Celery（用于后台任务）
+- Redis（用于缓存和任务队列）
+- PostgreSQL 或 MySQL（生产环境推荐数据库）
+
+# Django 专用规范
+- 使用 Django 模板 渲染 HTML，使用 DRF Serializer 处理 JSON 响应。
+- 将业务逻辑放在模型和表单中；保持视图轻量化，仅聚焦于请求处理。
+- 使用 Django 的 URL 分发器 (urls.py) 定义清晰且 RESTful 的 URL 路径。
+- 应用 Django 的安全最佳实践（如 CSRF 防护、SQL 注入防护、XSS 防护）。
+- 使用 Django 的内置测试工具（unittest 与 pytest-django）保证代码质量与可靠性。
+- 利用 Django 的缓存框架优化频繁访问的数据。
+- 使用 Django 的中间件处理通用任务，如认证、日志和安全。
+- template 优先使用 Django 5.x 的新特性
+- 在 `models.py` 中保存模型，并在 `admin.py` 中注册以使用管理界面
+
+# 性能优化
+- 使用 ORM 的 select_related 和 prefetch_related 优化关联对象查询。
+- 使用 Django 缓存框架及其后端（如 Redis 或 Memcached）减轻数据库负载。
+- 实施数据库索引和查询优化，提高性能。
+- 使用 异步视图 和 后台任务 (Celery) 处理 I/O 密集或长耗时操作。
+- 使用 Django 的静态文件管理系统（如 WhiteNoise 或 CDN 集成）优化静态文件处理。
+
+# 关键约定
+- 遵循 Django 的 “约定优于配置” 原则，减少样板代码。
+- 在开发的每个阶段都优先考虑 安全性与性能优化。
+- 保持清晰、逻辑化的项目结构，以提升可读性和可维护性。
+
+请参考 Django 官方最新文档，以获取 视图、模型、表单与安全性 的最佳实践。
